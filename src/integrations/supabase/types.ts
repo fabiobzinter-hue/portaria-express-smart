@@ -22,6 +22,11 @@ export type Database = {
           endereco: string
           id: string
           nome: string
+          sindico_cpf: string | null
+          sindico_id: string | null
+          sindico_nome: string | null
+          sindico_senha: string | null
+          sindico_telefone: string | null
           telefone: string | null
           updated_at: string
         }
@@ -32,6 +37,11 @@ export type Database = {
           endereco: string
           id?: string
           nome: string
+          sindico_cpf?: string | null
+          sindico_id?: string | null
+          sindico_nome?: string | null
+          sindico_senha?: string | null
+          sindico_telefone?: string | null
           telefone?: string | null
           updated_at?: string
         }
@@ -42,14 +52,28 @@ export type Database = {
           endereco?: string
           id?: string
           nome?: string
+          sindico_cpf?: string | null
+          sindico_id?: string | null
+          sindico_nome?: string | null
+          sindico_senha?: string | null
+          sindico_telefone?: string | null
           telefone?: string | null
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "condominios_sindico_id_fkey"
+            columns: ["sindico_id"]
+            isOneToOne: false
+            referencedRelation: "funcionarios"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       entregas: {
         Row: {
           codigo_retirada: string
+          condominio_id: string | null
           created_at: string
           data_entrega: string
           data_retirada: string | null
@@ -65,6 +89,7 @@ export type Database = {
         }
         Insert: {
           codigo_retirada: string
+          condominio_id?: string | null
           created_at?: string
           data_entrega?: string
           data_retirada?: string | null
@@ -80,6 +105,7 @@ export type Database = {
         }
         Update: {
           codigo_retirada?: string
+          condominio_id?: string | null
           created_at?: string
           data_entrega?: string
           data_retirada?: string | null
@@ -94,6 +120,13 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "entregas_condominio_id_fkey"
+            columns: ["condominio_id"]
+            isOneToOne: false
+            referencedRelation: "condominios"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "entregas_funcionario_id_fkey"
             columns: ["funcionario_id"]
