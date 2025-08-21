@@ -52,9 +52,7 @@ export const ReportsPanel = ({ onBack, condominioId }: ReportsPanelProps) => {
           .order('created_at', { ascending: false })
           .limit(100);
 
-        const { data, error } = condominioId
-          ? await baseQuery.eq('condominio_id', condominioId)
-          : await baseQuery;
+        const { data, error } = await baseQuery;
 
         if (error) {
           console.error('❌ Erro ao buscar entregas:', error);
@@ -166,9 +164,7 @@ export const ReportsPanel = ({ onBack, condominioId }: ReportsPanelProps) => {
                         .order('created_at', { ascending: false })
                         .limit(100);
 
-                      const { data, error } = condominioId
-                        ? await baseQuery.eq('condominio_id', condominioId)
-                        : await baseQuery;
+                       const { data, error } = await baseQuery;
 
                       if (error) throw error;
 

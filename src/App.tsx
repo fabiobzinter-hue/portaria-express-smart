@@ -20,7 +20,7 @@ function App() {
   }
 
   const getInitialDashboardView = () => {
-    if (!user) return '/'; // Should not happen if we are rendering Dashboard
+    if (!user) return 'search' as const; // Should not happen if we are rendering Dashboard
 
     // Se o usuário é um administrador e o síndico do seu condomínio, ir para o painel de administração
     if (
@@ -28,10 +28,10 @@ function App() {
       user.condominio &&
       user.condominio.sindico_id === user.funcionario.id
     ) {
-      return 'admin';
+      return 'admin' as const;
     }
     // Caso contrário, ir para a vista padrão de porteiro (busca)
-    return 'search';
+    return 'search' as const;
   };
 
   return (

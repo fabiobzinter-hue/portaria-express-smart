@@ -104,8 +104,7 @@ export const AdminReports = () => {
       // 1) Buscar entregas básicas do condomínio
       const { data: entregasRaw, error: entError } = await supabase
         .from('entregas')
-        .select('id, codigo_retirada, status, data_entrega, data_retirada, descricao_retirada, observacoes, foto_url, created_at, condominio_id, morador_id, funcionario_id')
-        .eq('condominio_id', condominioId)
+        .select('id, codigo_retirada, status, data_entrega, data_retirada, descricao_retirada, observacoes, foto_url, created_at, morador_id, funcionario_id')
         .order('created_at', { ascending: false });
 
       if (entError) throw entError;
@@ -132,7 +131,7 @@ export const AdminReports = () => {
       const funcById = new Map((funcionariosData || []).map(f => [f.id, f]));
       const morById = new Map((moradoresData || []).map(m => [m.id, m]));
 
-      const mapped: Entrega[] = (entregasRaw || []).map(r => ({
+      const mapped: Entrega[] = (entregasRaw || []).map((r: any) => ({
         id: r.id,
         codigo_retirada: r.codigo_retirada,
         status: r.status,
@@ -142,7 +141,7 @@ export const AdminReports = () => {
         observacoes: r.observacoes,
         foto_url: r.foto_url,
         created_at: r.created_at,
-        condominio_id: r.condominio_id,
+        condominio_id: condominioId,
         funcionario: {
           id: r.funcionario_id,
           nome: funcById.get(r.funcionario_id)?.nome || 'Funcionário',

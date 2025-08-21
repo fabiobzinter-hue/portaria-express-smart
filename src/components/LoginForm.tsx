@@ -148,12 +148,13 @@ export const LoginForm = ({ onLogin }: LoginFormProps) => {
 
           <div className="mt-6 p-4 bg-muted rounded-lg">
             <p className="text-xs text-muted-foreground text-center mb-2">
-              <strong>Funcionários de Teste:</strong>
+              <strong>Usuários Disponíveis:</strong>
             </p>
             <div className="text-xs text-muted-foreground space-y-1">
-              <p>• CPF: 12345678901 | Senha: 123456 | João Silva (Residencial Vista Bela)</p>
-              <p>• CPF: 98765432100 | Senha: 654321 | Maria Santos (Condomínio Solar)</p>
-              <p>• CPF: 11122233344 | Senha: 789123 | Pedro Oliveira (Residencial Parque)</p>
+              <p>• CPF: 12345678901 | Senha: 12061972 | João Silva (Condomínio Arco Iris)</p>
+              <p>• CPF: 06632377858 | Senha: 123456 | Valtemir (Condomínio Arco Iris)</p>
+              <p>• CPF: 12533423858 | Senha: 100473 | Fabio Zissou (Ed Arcanjo)</p>
+              <p>• CPF: 43093000220 | Senha: 270407 | Danilo Jesus - Síndico (Condomínio Arco Iris)</p>
             </div>
           </div>
         </CardContent>

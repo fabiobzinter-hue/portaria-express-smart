@@ -29,7 +29,7 @@ export const useAuth = () => {
           try {
             const { data } = await supabase
               .from('condominios')
-              .select('*, sindico_id') // Selecionar sindico_id
+              .select('*')
               .eq('id', parsed.condominio?.id)
               .maybeSingle();
             
@@ -89,7 +89,7 @@ export const useAuth = () => {
         funcionario = funcionarios[0];
         const { data: condo, error: condError } = await supabase
           .from('condominios')
-          .select('*, sindico_id')
+          .select('*')
           .eq('id', funcionario.condominio_id)
           .maybeSingle();
 

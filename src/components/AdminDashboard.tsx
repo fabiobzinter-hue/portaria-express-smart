@@ -83,7 +83,6 @@ export const AdminDashboard = () => {
       const { data: entregasHoje } = await supabase
         .from('entregas')
         .select('*')
-        .eq('condominio_id', condominioId) // Filtrar por condominioId
         .gte('created_at', inicioDia.toISOString())
         .lte('created_at', fimDia.toISOString());
 
@@ -91,14 +90,12 @@ export const AdminDashboard = () => {
       const { data: entregasPendentes } = await supabase
         .from('entregas')
         .select('*')
-        .eq('condominio_id', condominioId) // Filtrar por condominioId
         .eq('status', 'pendente');
 
       // Buscar entregas retiradas do condomínio
       const { data: entregasRetiradas } = await supabase
         .from('entregas')
         .select('*')
-        .eq('condominio_id', condominioId) // Filtrar por condominioId
         .eq('status', 'retirada');
 
       setStats({

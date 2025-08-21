@@ -115,7 +115,7 @@ export const AdminCondominiums = () => {
       console.log('loadData: Resultado consulta administradores:', { administradoresData, adminError }); // Log resultado
       if (adminError) throw adminError;
 
-      setCondominios(condominiosData || []);
+      setCondominios((condominiosData || []).map(c => ({ ...c, sindico_id: null })));
       setAdministradores(administradoresData || []);
 
     } catch (error) {
@@ -222,7 +222,7 @@ export const AdminCondominiums = () => {
     return administradores.find(admin => admin.id === sindicoId)?.nome || 'Não Atribuído';
   };
 
-  if (isLoading || !user?.id) {
+  if (isLoading || !user?.funcionario?.id) {
     return (
       <div className="p-6">
         <div className="animate-pulse space-y-4">
@@ -313,7 +313,7 @@ export const AdminCondominiums = () => {
                 />
               </div>
               {/* Seleção de Síndico */}
-              {user && user.cargo === 'super_administrador' && ( // Apenas super-admin pode atribuir síndico
+              {user && user.funcionario.cargo === 'super_administrador' && ( // Apenas super-admin pode atribuir síndico
                 <div className="space-y-2">
                   <Label htmlFor="sindico">Síndico (Administrador)</Label>
                   <Select
